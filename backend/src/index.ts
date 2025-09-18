@@ -5,12 +5,14 @@ import express from "express";
 import type { TextBlock } from "@anthropic-ai/sdk/resources";
 import { basePrompt as reactBasePrompt } from "./defaults/react.js";
 import { basePrompt as nodeBasePrompt } from "./defaults/node.js";
+import cors from "cors";
 
 dotenv.config();
 const anthropic = new Anthropic();
 const PORT = 8000;
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 //with the user prompt, 3 other prompts will be sent to llm
